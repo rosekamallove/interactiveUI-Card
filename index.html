@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <div class="card" id="card">
+        <h1>Your guide to the hot zone</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis incidunt doloribus adipisci quae provident, quod accusamus hic cupiditate quasi dolor blanditiis minus expedita iure ullam, iste nemo magnam possimus magni! Lorem ipsum dolor sit,
+            amet consectetur adipisicing elit. Sequi, ab. Lorem ipsum dolor sit amet.</p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js" integrity="sha512-IQLehpLoVS4fNzl7IfH8Iowfm5+RiMGtHykgZJl9AWMgqx0AmJ6cRWcB+GaGVtIsnC4voMfm8f2vwtY+6oPjpQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/CSSRulePlugin.min.js" integrity="sha512-6MT8e40N5u36Um5SXKtwZmoKcCSg1XaKtexnXZPpQ4iJDHrBEHXKz37fnDovXezsaCd4oKCH5Y+vrcl7qpLPoA==" crossorigin="anonymous"></script>
+
+    <script>
+        var card = document.getElementById('card');
+        var rule = CSSRulePlugin.getRule(".card::before");
+        var rule2 = CSSRulePlugin.getRule(".card::after");
+
+        var tl = gsap.timeline({
+            defaults: {
+                ease: "power2.inOut"
+            }
+        });
+
+        tl.to(rule, {
+            width: '100%'
+        })
+        tl.to(rule2, {
+            width: '100%'
+        }, "-=.3")
+        tl.to('h1', {
+            color: 'white'
+        }, "-=.7")
+        tl.to('p', {
+            'clipPath': 'circle(140% at 0% 100%)',
+            'transform': 'translateX(0)',
+            ease: Back.easeOut.config(4),
+            duration: .5
+        }, "-=.2")
+
+        tl.pause();
+
+        card.addEventListener('mouseenter', () => {
+            tl.play();
+        })
+        card.addEventListener('mouseleave', () => {
+            tl.reverse();
+        })
+    </script>
+
+</body>
+
+</html>
